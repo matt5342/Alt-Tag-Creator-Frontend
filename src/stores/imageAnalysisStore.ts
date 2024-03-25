@@ -1,6 +1,6 @@
 // In your Pinia store
 import { defineStore } from 'pinia';
-import type { ImageForm, ImageAnalysisResponse, ImageAnalysisResult } from '../shared/interfaces';
+import type { ImageForm, ImageAnalysisResult } from '../shared/interfaces';
 import { ImageAnalysisTypes } from '../shared/interfaces';
 import apiService from '../services/ApiService';
 

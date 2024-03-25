@@ -32,26 +32,26 @@
               <input type="file" id="html_file" @change="onFileChange" class="form-control-file">
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3" :disabled="isLoadingAnalysis">Upload</button>
-            <div v-if="isLoadingAnalysis">Loading...</div>
+            <button type="submit" class="btn btn-primary mt-3" :disabled="isLoadingAnalysis">Upload
+              <div v-if="isLoadingAnalysis" class="spinner-border spinner-border-sm text-white" role="status">
+                  <span class="sr-only"></span>
+              </div>
+            </button>
           </form>
         </div>
       </div>
       <div v-if="imageAnalysisResponse" class="row mt-5" id="results">
-        <AnalysisReponse :inputType="inputType" />
+        <AnalysisReponse />
       </div>
     </div>
   </template>
 
   <script setup lang="ts">
-  import { ref, computed, watch } from 'vue';
-  import type { ImageForm } from '../../shared/interfaces';
+  import { computed } from 'vue';
   import { useImageAnalysisStore } from '@/stores/imageAnalysisStore';
   import AnalysisReponse from './AnalysisResponse.vue';
-  import { ImageAnalysisTypes } from '@/shared/interfaces';
   
   const imageAnalysisStore = useImageAnalysisStore();
-  const inputType = ref<ImageAnalysisTypes>(imageAnalysisStore.imageForm.inputType as ImageAnalysisTypes);
   // Form data
   const imageForm = imageAnalysisStore.imageForm;
   const onFileChange = (event: Event) => {
@@ -68,9 +68,7 @@
         formData.append(key, value);
       }
     });
-    // inputType.value = imageForm.inputType as ImageAnalysisTypes;
     imageAnalysisStore.submitImageForm(formData);
-
   };
 
 </script>
