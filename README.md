@@ -2,7 +2,7 @@
 
 ## Project Setup
 
-Clone the repository
+Clone the repository, then in your project directory:
 
 ```sh
 npm install
